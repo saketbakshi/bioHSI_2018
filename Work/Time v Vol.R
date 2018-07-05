@@ -38,4 +38,4 @@ for(i in 1:nrow(timescale)) {
 	myMeanADC[i]<-mean(temp3$log10_volume)
 }
 lines(timescale$age_mid, myMeanADC, col="blue4", lwd=3)
-
+legend(550, 12, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8)
