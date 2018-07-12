@@ -1,29 +1,30 @@
-setwd("/Users/seyib/Desktop")
-sizeData<-read.delim(file='bodySizes.txt')
-sizeData$log10_volume<-log10(sizeData$max_vol)
-sizeData$combined_resp<-paste(sizeData$fluid, sizeData$respOrgan, sizeData$circ)
-sizeData <- subset(sizeData, combined_resp != "" & combined_resp != "water multi closed")
+setwd("/Users/seyib/Desktop") #set working directory
+sizeData<-read.delim(file='bodySizes.txt') #read in data set
+sizeData$log10_volume<-log10(sizeData$max_vol) #add colummn to data set to take log of max volume of all species
+sizeData$combined_resp<-paste(sizeData$fluid, sizeData$respOrgan, sizeData$circ) #adding a combined column to dataset to sort out respiration types
+sizeData <- subset(sizeData, combined_resp != "" & combined_resp != "water multi closed") #taking out data that isn't sorted into any category and taking out organisms that have respiration systems: water, multi organ, closed, because there aren't enough examples to make definite conclusions
 # table(sizeData$combined_resp) shows how many different variations there are with how many values in each category
-timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt')
+timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt') #reading in timescale
 
+#making subsets of different types of usable respiration combinations
 WaDeCl<-sizeData[which(sizeData[,"fluid"]=="water" & sizeData[,"respOrgan"]=="dedicated" & sizeData[,"circ"]=="closed"),]
 WaDeOp<-sizeData[which(sizeData[,"fluid"]=="water" & sizeData[,"respOrgan"]=="dedicated" & sizeData[,"circ"]=="open"),]
 WaMuOp<-sizeData[which(sizeData[,"fluid"]=="water" & sizeData[,"respOrgan"]=="multi" & sizeData[,"circ"]=="open"),]
 AiDeCl<-sizeData[which(sizeData[,"fluid"]=="air" & sizeData[,"respOrgan"]=="dedicated" & sizeData[,"circ"]=="closed"),]
 
-plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,1), xlab="Geological time (Ma)", ylab="Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Progression Over Time of Extinction Selectivity as Estimated by Body Size")
+plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,1), xlab="Geological time (Ma)", ylab="Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size") #setting up graph plot
 
-myRegWDC <- vector(mode="numeric", length=nrow(timescale))
-for(i in 1:nrow(timescale)) {
-	temp<-WaDeCl[WaDeCl$fad_age > timescale$age_top[i] & WaDeCl$lad_age < timescale$age_bottom[i], ]
-	temp$extinct <- 0
-	temp$extinct[temp$lad_age < timescale$age_bottom[i] & temp$lad_age >= timescale$age_top[i]] <- 1
-	if(sum(temp$extinct) >= 3 & nrow(temp)-sum(temp$extinct) >= 3) {
-		glmEqn <- glm(extinct ~ log10_volume, family="binomial", data=temp)
-		myRegWDC[i]<- glmEqn$coefficients[2]
+myRegWDC <- vector(mode="numeric", length=nrow(timescale)) #making empty vector that can be filled with correlation coefficient for y~x being extinct~bodysize, where extinct = 1 means it goes extinct. a negative value means that as body size increases, organisms are less likely to go extinct. vice versa for positive value
+for(i in 1:nrow(timescale)) { #making loop for filling in vector
+	temp<-WaDeCl[WaDeCl$fad_age > timescale$age_top[i] & WaDeCl$lad_age < timescale$age_bottom[i], ] #creates temp data that subsets all organisms contained in a time period
+	temp$extinct <- 0 #creates a new column called extinct where every organism is set to extant
+	temp$extinct[temp$lad_age < timescale$age_bottom[i] & temp$lad_age >= timescale$age_top[i]] <- 1 #filters through all organisms of the interval that become extinct and sets them to 1 in the extinct column
+	if(sum(temp$extinct) >= 3 & nrow(temp)-sum(temp$extinct) >= 3) { #insures that if there is not enough data in an interval, it is not calculated and the correlation calculation is skipped over. Prevents huge correlation coefficients that aren't statistically significant
+		glmEqn <- glm(extinct ~ log10_volume, family="binomial", data=temp) #does regression calculation for extinct as estimated by volume for time interval
+		myRegWDC[i]<- glmEqn$coefficients[2] #inserts value for coefficient into vector
 	}
 }
-lines(timescale$age_mid, myRegWDC, col="red4", lwd=3)
+lines(timescale$age_mid, myRegWDC, col="red4", lwd=3) #adds line of vector above
 
 myRegWDO <- vector(mode="numeric", length=nrow(timescale))
 for(i in 1:nrow(timescale)) {
@@ -55,11 +56,11 @@ for(i in 1:nrow(timescale)) {
 	if(nrow(temp3) > 0){
 		temp3$extinct <- 0
 		temp3$extinct[temp3$lad_age < timescale$age_bottom[i] & temp3$lad_age >= timescale$age_top[i]] <- 1
-		if(sum(temp$extinct) >= 3 & nrow(temp)-sum(temp$extinct) >= 3) {
+		if(sum(temp3$extinct) >= 3 & nrow(temp3)-sum(temp3$extinct) >= 3) {
 			glmEqn3 <- glm(extinct ~ log10_volume, family="binomial", data=temp3)
 			myRegADC[i]<- glmEqn3$coefficients[2]
 		}
 	}
 }
 lines(timescale$age_mid, myRegADC, col="blue4", lwd=3)
-legend(550, 9, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8)
+legend(550, -1.25, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
