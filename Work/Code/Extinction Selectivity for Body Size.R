@@ -72,7 +72,7 @@ for(i in 1:nrow(timescale)) {
 	myPropADC[i] <- sum(temp3$extinct)/nrow(temp3)
 }
 lines(timescale$age_mid, myRegADC, col="blue4", lwd=3)
-legend(550, -1.25, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
+legend(550, -1.45, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
 quartz() #creates new plot window
 plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(0,1), xlab="Geological time (Ma)", ylab="Extinction Rate", main="Change of Extinction Rate Over Time") #sets up new plot
 lines(timescale$age_mid, myPropWDC, col="red4", lwd=3) #adds lines of extinction rate for each genera
