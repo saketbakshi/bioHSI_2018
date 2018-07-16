@@ -14,7 +14,7 @@ WaMuOp<-sizeData[which(sizeData[,"fluid"]=="water" & sizeData[,"respOrgan"]=="mu
 AiDeCl<-sizeData[which(sizeData[,"fluid"]=="air" & sizeData[,"respOrgan"]=="dedicated" & sizeData[,"circ"]=="closed"),]
 
 quartz() #makes a new plot window to not overwrite a quartz window
-time.plot(c(-2,1), "Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size", x.axis.pct=18)
+time.plot(c(-2,1), "Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size", x.axis.pct=18, mar=c(3,2.75,2,1))
 #plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,1), xlab="Geological time (Ma)", ylab="Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size") #setting up graph plot
 
 myRegWDC <- vector(mode="numeric", length=nrow(timescale)) #making empty vector that can be filled with correlation coefficient for y~x being extinct~bodysize, where extinct = 1 means it goes extinct. a negative value means that as body size increases, organisms are less likely to go extinct. vice versa for positive value
@@ -77,7 +77,7 @@ lines(timescale$age_mid, myRegADC, col="blue4", lwd=2)
 legend(520, -1.38, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
 quartz() #creates new plot window
 #plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(0,1), xlab="Geological time (Ma)", ylab="Extinction Rate", main="Change of Extinction Rate Over Time") #sets up new plot
-time.plot(c(0,1), "Extinction Rate", main="Change of Extinction Rate Over Time", x.axis.pct=6)
+time.plot(c(0,1), "Extinction Rate", main="Change of Extinction Rate Over Time", x.axis.pct=6, mar=c(3,2.75,2,1))
 lines(timescale$age_mid, myPropWDC, col="red4", lwd=2) #adds lines of extinction rate for each genera
 lines(timescale$age_mid, myPropWDO, col="darkorange4", lwd=2)
 lines(timescale$age_mid, myPropWMO, col="darkgreen", lwd=2)

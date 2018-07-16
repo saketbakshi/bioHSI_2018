@@ -7,7 +7,7 @@ sizeData <- subset(sizeData, combined_resp != "" & combined_resp != "water multi
 # table(sizeData$combined_resp) shows how many different variations there are with how many values in each category
 timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt') #reading in timescale
 quartz() #makes a new plot window to not overwrite a quartz window
-time.plot(c(-2,12), "", main="Body Size Evolution as Divided by Respiratory Types")
+time.plot(c(-2,12), "", main="Body Size Evolution as Divided by Respiratory Types", mar=c(3,2.75,2,1))
 #plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,12), xlab="Geological time (Ma)", ylab="", main="Body Size Evolution as Divided by Respiratory Types") #setting up graph plot
 
 title(ylab=expression(paste("Biovolume (log"[10]," mm"^3*")")), line=1.5) #offsetting y-axis label in plot bc superscript is cut off
