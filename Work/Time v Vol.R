@@ -5,6 +5,7 @@ sizeData$combined_resp<-paste(sizeData$fluid, sizeData$respOrgan, sizeData$circ)
 sizeData <- subset(sizeData, combined_resp != "" & combined_resp != "water multi closed") #taking out data that isn't sorted into any category and taking out organisms that have respiration systems: water, multi organ, closed, because there aren't enough examples to make definite conclusions
 # table(sizeData$combined_resp) shows how many different variations there are with how many values in each category
 timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt') #reading in timescale
+quartz() #makes a new plot window to not overwrite a quartz window
 plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,12), xlab="Geological time (Ma)", ylab="", main="Body Size Evolution as Divided by Respiratory Types") #setting up graph plot
 
 title(ylab=expression(paste("Biovolume (log"[10]," cm"^3*")")), line=2.2) #offsetting y-axis label in plot bc superscript is cut off
