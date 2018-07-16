@@ -1,3 +1,4 @@
+source("https://github.com/naheim/paleosizePaper/raw/master/sharedCode/functions.r")
 setwd("/Users/seyib/Desktop") #set working directory
 sizeData<-read.delim(file='bodySizes.txt') #read in data set
 sizeData$log10_volume<-log10(sizeData$max_vol) #add colummn to data set to take log of max volume of all species
@@ -13,7 +14,8 @@ WaMuOp<-sizeData[which(sizeData[,"fluid"]=="water" & sizeData[,"respOrgan"]=="mu
 AiDeCl<-sizeData[which(sizeData[,"fluid"]=="air" & sizeData[,"respOrgan"]=="dedicated" & sizeData[,"circ"]=="closed"),]
 
 quartz() #makes a new plot window to not overwrite a quartz window
-plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,1), xlab="Geological time (Ma)", ylab="Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size") #setting up graph plot
+time.plot(c(-2,1), "Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size", x.axis.pct=18)
+#plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,1), xlab="Geological time (Ma)", ylab="Slope of Regression Coeffecient for Extinction Estimated by Volume", main="Time Series of Extinction Selectivity as Estimated by Body Size") #setting up graph plot
 
 myRegWDC <- vector(mode="numeric", length=nrow(timescale)) #making empty vector that can be filled with correlation coefficient for y~x being extinct~bodysize, where extinct = 1 means it goes extinct. a negative value means that as body size increases, organisms are less likely to go extinct. vice versa for positive value
 myPropWDC <- vector(mode="numeric", length=nrow(timescale)) #empty vector that can be filled with proportion of genera that go extinct in a time period
@@ -27,7 +29,7 @@ for(i in 1:nrow(timescale)) { #making loop for filling in vector
 	}
 	myPropWDC[i] <- sum(temp$extinct)/nrow(temp) #calculating the proprtion of genera that go extinct in time period
 }
-lines(timescale$age_mid, myRegWDC, col="red4", lwd=3) #adds line of vector above
+lines(timescale$age_mid, myRegWDC, col="red4", lwd=2) #adds line of vector above
 
 myRegWDO <- vector(mode="numeric", length=nrow(timescale))
 myPropWDO <- vector(mode="numeric", length=nrow(timescale))
@@ -41,7 +43,7 @@ for(i in 1:nrow(timescale)) {
 		}
 	myPropWDO[i] <- sum(temp1$extinct)/nrow(temp1)
 }
-lines(timescale$age_mid, myRegWDO, col="darkorange4", lwd=3)
+lines(timescale$age_mid, myRegWDO, col="darkorange4", lwd=2)
 
 myRegWMO <- vector(mode="numeric", length=nrow(timescale))
 myPropWMO <- vector(mode="numeric", length=nrow(timescale))
@@ -55,7 +57,7 @@ for(i in 1:nrow(timescale)) {
 	}
 	myPropWMO[i] <- sum(temp2$extinct)/nrow(temp2)
 }
-lines(timescale$age_mid, myRegWMO, col="darkgreen", lwd=3)
+lines(timescale$age_mid, myRegWMO, col="darkgreen", lwd=2)
 
 myRegADC <- vector(mode="numeric", length=nrow(timescale))
 myPropADC <- vector(mode="numeric", length=nrow(timescale))
@@ -71,12 +73,13 @@ for(i in 1:nrow(timescale)) {
 	}
 	myPropADC[i] <- sum(temp3$extinct)/nrow(temp3)
 }
-lines(timescale$age_mid, myRegADC, col="blue4", lwd=3)
-legend(550, -1.45, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
+lines(timescale$age_mid, myRegADC, col="blue4", lwd=2)
+legend(520, -1.38, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
 quartz() #creates new plot window
-plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(0,1), xlab="Geological time (Ma)", ylab="Extinction Rate", main="Change of Extinction Rate Over Time") #sets up new plot
-lines(timescale$age_mid, myPropWDC, col="red4", lwd=3) #adds lines of extinction rate for each genera
-lines(timescale$age_mid, myPropWDO, col="darkorange4", lwd=3)
-lines(timescale$age_mid, myPropWMO, col="darkgreen", lwd=3)
-lines(timescale$age_mid, myPropADC, col="blue4", lwd=3)
-legend(550, 1, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.7) #creates legend
+#plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(0,1), xlab="Geological time (Ma)", ylab="Extinction Rate", main="Change of Extinction Rate Over Time") #sets up new plot
+time.plot(c(0,1), "Extinction Rate", main="Change of Extinction Rate Over Time", x.axis.pct=6)
+lines(timescale$age_mid, myPropWDC, col="red4", lwd=2) #adds lines of extinction rate for each genera
+lines(timescale$age_mid, myPropWDO, col="darkorange4", lwd=2)
+lines(timescale$age_mid, myPropWMO, col="darkgreen", lwd=2)
+lines(timescale$age_mid, myPropADC, col="blue4", lwd=2)
+legend(520, 0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.7) #creates legend

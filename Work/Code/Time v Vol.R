@@ -1,3 +1,4 @@
+source("https://github.com/naheim/paleosizePaper/raw/master/sharedCode/functions.r")
 setwd("/Users/seyib/Desktop") #setting directory
 sizeData<-read.delim(file='bodySizes.txt') #reading in data set
 sizeData$log10_volume<-log10(sizeData$max_vol) #adding column to dataset to make log volume of data
@@ -6,9 +7,10 @@ sizeData <- subset(sizeData, combined_resp != "" & combined_resp != "water multi
 # table(sizeData$combined_resp) shows how many different variations there are with how many values in each category
 timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt') #reading in timescale
 quartz() #makes a new plot window to not overwrite a quartz window
-plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,12), xlab="Geological time (Ma)", ylab="", main="Body Size Evolution as Divided by Respiratory Types") #setting up graph plot
+time.plot(c(-2,12), "", main="Body Size Evolution as Divided by Respiratory Types")
+#plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(-2,12), xlab="Geological time (Ma)", ylab="", main="Body Size Evolution as Divided by Respiratory Types") #setting up graph plot
 
-title(ylab=expression(paste("Biovolume (log"[10]," cm"^3*")")), line=2.2) #offsetting y-axis label in plot bc superscript is cut off
+title(ylab=expression(paste("Biovolume (log"[10]," mm"^3*")")), line=1.5) #offsetting y-axis label in plot bc superscript is cut off
 # expression(paste("Biovolume (log"[10]," cm"^3*")"))
 
 
@@ -55,4 +57,4 @@ for(i in 1:nrow(timescale)) {
 }
 lines(timescale$age_mid, myMeanADC, col="blue4", lwd=3)
 
-legend(550, 12, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
+legend(520, 11.44, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
