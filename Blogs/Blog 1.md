@@ -5,7 +5,7 @@ Working with R has been much more interesting too. Noel has empowered us with ma
 
 We also have a book to read this summer, John Tyler Bonner's *Why Size Matters*. I have never read a book like it, except for maybe Randall Munroe's *What If?* Nevertheless, I look forward to complete Bonner's book and I hope it can give me some inspiration or ideas to write about in the research paper.
 
-Speaking of the research paper, Bella, my colleague in the paper, and I have started work on our subject - respiratory systems. We have brainstormed ideas for what data we should analyze and how we should interpret it. Progress can be seen in [our research repository](https://github.com/naheim/paleosizePaper/tree/master/respAnatomy) or maybe even [my own](https://github.com/saketbakshi/bioHSI_2018).
+Speaking of the research paper, Bella, my colleague in the paper, and I have started work on our subject - respiratory systems. We have brainstormed ideas for what data we should analyze and how we should interpret it. Progress can be seen in [our research repository](https://github.com/naheim/paleosizePaper/tree/master/respAnatomy) or maybe even [my own](https://github.com/saketbakshi/bioHSI_2018/tree/master/Work).
 
 On Tuesday, the 3rd of July, we had a trip to New Brighton State Beach and the Seymour Marine Discovery Center in Santa Cruz. At the beach, we observed cliffs of fossils from the Pliocene and Miocene while also checking out some of the living fauna on the rocks, like sea anenome and isopods. The weather was a little cold to see the whole beach but we still had a thorough experience finding bones in rocks and shells in the cliffs.
 
