@@ -1,4 +1,4 @@
-#Blog 1: July 5, 2018
+# Blog 1: July 5, 2018
 This year's work in the Biodiversity program has been a huge change from what I was accustomed to last year. I can be much more enthusiastic about my work because it requires more analysis and creativity that peaks my interest and effort.
 
 Working with R has been much more interesting too. Noel has empowered us with many tools and resources to do a lot more in R than I could last year.
