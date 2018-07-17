@@ -25,7 +25,7 @@ AiDeCl<-sizeData[which(sizeData[,"fluid"]=="air" & sizeData[,"respOrgan"]=="dedi
 segments(WaDeCl$fad_age, WaDeCl$log10_volume, WaDeCl$lad_age, WaDeCl$log10_volume, col="red", lwd=0.25)
 segments(WaDeOp$fad_age, WaDeOp$log10_volume, WaDeOp$lad_age, WaDeOp$log10_volume, col="darkorange", lwd=0.25)
 segments(WaMuOp$fad_age, WaMuOp$log10_volume, WaMuOp$lad_age, WaMuOp$log10_volume, col="forestgreen", lwd=0.25)
-segments(AiDeCl$fad_age, AiDeCl$log10_volume, AiDeCl$lad_age, AiDeCl$log10_volume, col="dodgerblue", lwd=0.25)
+segments(AiDeCl$fad_age, AiDeCl$log10_volume, AiDeCl$lad_age, AiDeCl$log10_volume, col="blue4", lwd=0.25)
 
 #calculating mean of each subset at each time interval
 
@@ -55,6 +55,6 @@ for(i in 1:nrow(timescale)) {
 	temp3<-AiDeCl[AiDeCl$fad_age > timescale$age_top[i] & AiDeCl$lad_age < timescale$age_bottom[i], ]
 	myMeanADC[i]<-mean(temp3$log10_volume)
 }
-lines(timescale$age_mid, myMeanADC, col="blue4", lwd=3)
+lines(timescale$age_mid, myMeanADC, col="dodgerblue", lwd=3)
 
 legend(520, 11.44, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
