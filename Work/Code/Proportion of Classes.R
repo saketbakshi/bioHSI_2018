@@ -35,4 +35,4 @@ polygon(xPoly,yPoly2, col=classCols[1])
 polygon(xPoly,yPoly3, col=classCols[2])
 polygon(xPoly,yPoly4, col=classCols[3])
 
-legend(520,1.92, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), title="Respiratory System Types")
+legend(479,0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Respiratory System Types", bg="#ffffff", cex=0.7)
