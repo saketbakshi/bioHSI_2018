@@ -30,9 +30,9 @@ for(i in 1:nBins) {
 quartz()
 time.plot(c(-2,2), "Log-odds of extinction", main="Time Series of Extinction Selectivity as Estimated by Body Size")
 abline(h=0, lty=2)
-points(timescale$age_mid, wdcExtSel$coef, pch=16, cex=1.25, col="red4")
-segments(timescale$age_mid,wdcExtSel$ci.minus,timescale$age_mid,wdcExtSel$ci.plus, col="red")
-legend(250, 1.84, legend=c("Water, Dedicated organ, Closed system"), col=c("red4"), lty=1, title="Repiratory System Type", cex=0.7)
+points(timescale$age_mid, wdcExtSel$coef, pch=16, cex=1.25, col="black")
+segments(timescale$age_mid,wdcExtSel$ci.minus,timescale$age_mid,wdcExtSel$ci.plus, col="#ff5640")
+legend(250, 1.84, legend=c("Water, Dedicated organ, Closed system"), col=c("#ff5640"), lty=1, title="Repiratory System Type", cex=0.7)
 
 wdoExtSel <- data.frame(matrix(NA, nrow=nBins, ncol=3, dimnames=list(timescale$interval_name, c('coef','ci.minus','ci.plus'))))
 for(i in 1:nBins) {
@@ -52,9 +52,9 @@ for(i in 1:nBins) {
 quartz()
 time.plot(c(-2,2), "Log-odds of extinction", main="Time Series of Extinction Selectivity as Estimated by Body Size")
 abline(h=0, lty=2)
-points(timescale$age_mid, wdoExtSel$coef, pch=16, cex=1.25, col="darkorange4")
-segments(timescale$age_mid,wdoExtSel$ci.minus,timescale$age_mid,wdoExtSel$ci.plus, col="darkorange")
-legend(520, 1.84, legend=c("Water, Dedicated organ, Open system"), col=c("darkorange4"), lty=1, title="Repiratory System Type", cex=0.7)
+points(timescale$age_mid, wdoExtSel$coef, pch=16, cex=1.25, col="black")
+segments(timescale$age_mid,wdoExtSel$ci.minus,timescale$age_mid,wdoExtSel$ci.plus, col="#ffd900")
+legend(520, 1.84, legend=c("Water, Dedicated organ, Open system"), col=c("#ffd900"), lty=1, title="Repiratory System Type", cex=0.7)
 
 wmoExtSel <- data.frame(matrix(NA, nrow=nBins, ncol=3, dimnames=list(timescale$interval_name, c('coef','ci.minus','ci.plus'))))
 for(i in 1:nBins) {
@@ -74,9 +74,9 @@ for(i in 1:nBins) {
 quartz()
 time.plot(c(-2,2), "Log-odds of extinction", main="Time Series of Extinction Selectivity as Estimated by Body Size")
 abline(h=0, lty=2)
-points(timescale$age_mid, wmoExtSel$coef, pch=16, cex=1.25, col="darkgreen")
-segments(timescale$age_mid,wmoExtSel$ci.minus,timescale$age_mid,wmoExtSel$ci.plus, col="forestgreen")
-legend(520, 1.84, legend=c("Water, Multi-organ, Open system"), col=c("darkgreen"), lty=1, title="Repiratory System Type", cex=0.7)
+points(timescale$age_mid, wmoExtSel$coef, pch=16, cex=1.25, col="black")
+segments(timescale$age_mid,wmoExtSel$ci.minus,timescale$age_mid,wmoExtSel$ci.plus, col="#00ffd7")
+legend(520, 1.84, legend=c("Water, Multi-organ, Open system"), col=c("#00ffd7"), lty=1, title="Repiratory System Type", cex=0.7)
 
 adcExtSel <- data.frame(matrix(NA, nrow=nBins, ncol=3, dimnames=list(timescale$interval_name, c('coef','ci.minus','ci.plus'))))
 for(i in 1:nBins) {
@@ -96,6 +96,6 @@ for(i in 1:nBins) {
 quartz()
 time.plot(c(-2,2), "Log-odds of extinction", main="Time Series of Extinction Selectivity as Estimated by Body Size")
 abline(h=0, lty=2)
-points(timescale$age_mid, adcExtSel$coef, pch=16, cex=1.25, col="dodgerblue")
-segments(timescale$age_mid,adcExtSel$ci.minus,timescale$age_mid,adcExtSel$ci.plus, col="blue4")
-legend(520, 1.84, legend=c("Air, Dedicated organ, Closed system"), col=c("dodgerblue"), lty=1, title="Repiratory System Type", cex=0.7)
+points(timescale$age_mid, adcExtSel$coef, pch=16, cex=1.25, col="black")
+segments(timescale$age_mid,adcExtSel$ci.minus,timescale$age_mid,adcExtSel$ci.plus, col="#ee92ed")
+legend(520, 1.84, legend=c("Air, Dedicated organ, Closed system"), col=c("#ee92ed"), lty=1, title="Repiratory System Type", cex=0.7)

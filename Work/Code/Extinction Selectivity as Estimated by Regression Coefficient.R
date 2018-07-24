@@ -29,7 +29,7 @@ for(i in 1:nrow(timescale)) { #making loop for filling in vector
 	}
 	myPropWDC[i] <- sum(temp$extinct)/nrow(temp) #calculating the proprtion of genera that go extinct in time period
 }
-lines(timescale$age_mid, myRegWDC, col="red4", lwd=2) #adds line of vector above
+lines(timescale$age_mid, myRegWDC, col="#ff5640", lwd=2) #adds line of vector above
 
 myRegWDO <- vector(mode="numeric", length=nrow(timescale))
 myPropWDO <- vector(mode="numeric", length=nrow(timescale))
@@ -43,7 +43,7 @@ for(i in 1:nrow(timescale)) {
 		}
 	myPropWDO[i] <- sum(temp1$extinct)/nrow(temp1)
 }
-lines(timescale$age_mid, myRegWDO, col="darkorange4", lwd=2)
+lines(timescale$age_mid, myRegWDO, col="#ffd900", lwd=2)
 
 myRegWMO <- vector(mode="numeric", length=nrow(timescale))
 myPropWMO <- vector(mode="numeric", length=nrow(timescale))
@@ -57,7 +57,7 @@ for(i in 1:nrow(timescale)) {
 	}
 	myPropWMO[i] <- sum(temp2$extinct)/nrow(temp2)
 }
-lines(timescale$age_mid, myRegWMO, col="darkgreen", lwd=2)
+lines(timescale$age_mid, myRegWMO, col="#00ffd7", lwd=2)
 
 myRegADC <- vector(mode="numeric", length=nrow(timescale))
 myPropADC <- vector(mode="numeric", length=nrow(timescale))
@@ -73,13 +73,16 @@ for(i in 1:nrow(timescale)) {
 	}
 	myPropADC[i] <- sum(temp3$extinct)/nrow(temp3)
 }
-lines(timescale$age_mid, myRegADC, col="dodgerblue", lwd=2)
-legend(520, -1.38, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "dodgerblue"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
-quartz() #creates new plot window
+lines(timescale$age_mid, myRegADC, col="#ee92ed", lwd=2)
+legend(520, -1.38, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("#ff5640", "#ffd900", "#00ffd7", "#ee92ed"), lty=1, title="Repiratory System Types", cex=0.8) #makes legend for each respiration type
 #plot(1:10,1:10, type="n", xlim=c(550,0), ylim=c(0,1), xlab="Geological time (Ma)", ylab="Extinction Rate", main="Change of Extinction Rate Over Time") #sets up new plot
-time.plot(c(0,1), "Extinction Rate", main="Change of Extinction Rate Over Time", x.axis.pct=6, mar=c(3,2.75,2,1))
-lines(timescale$age_mid, myPropWDC, col="red4", lwd=2) #adds lines of extinction rate for each genera
-lines(timescale$age_mid, myPropWDO, col="darkorange4", lwd=2)
-lines(timescale$age_mid, myPropWMO, col="darkgreen", lwd=2)
-lines(timescale$age_mid, myPropADC, col="dodgerblue", lwd=2)
-legend(520, 0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "dodgerblue"), lty=1, title="Repiratory System Types", cex=0.7) #creates legend
+time.plot.mult(nrow=2, ncol=2, las=1, top.mar=2.5)
+plot(1:10, type="n", ylab="Extinction Rate", main="Water, Dedicated organ, Closed System", xlim=c(541,0), xlab="", ylim=c(0,1), xaxt="n")
+lines(timescale$age_mid, myPropWDC, col="#ff5640", lwd=2) #adds lines of extinction rate for each genera
+plot(1:10, type="n", ylab="Extinction Rate", main="Water, Dedicated organ, Open System", xlim=c(541,0), xlab="", ylim=c(0,1), xaxt="n")
+lines(timescale$age_mid, myPropWDO, col="#ffd900", lwd=2)
+plot(1:10, type="n", ylab="Extinction Rate", main="Water, Multi-organ, Open System", xlim=c(541,0), xlab="", ylim=c(0,1), xaxt="n")
+lines(timescale$age_mid, myPropWMO, col="#00ffd7", lwd=2)
+plot(1:10, type="n", ylab="Extinction Rate", main="Air, Dedicated organ, Closed System", xlim=c(541,0), xlab="", ylim=c(0,1), xaxt="n")
+lines(timescale$age_mid, myPropADC, col="#ee92ed", lwd=2)
+#legend(520, 0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("#ff5640", "#ffd900", "#00ffd7", "#ee92ed"), lty=1, title="Repiratory System Types", cex=0.7) #creates legend

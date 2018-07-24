@@ -22,17 +22,17 @@ for(i in 1:nBins) {
 }
 
 xPoly <- c(timescale$age_mid, rev(timescale$age_mid))
-yPoly1 <- c(rep(0, nBins), rev(sysProp[,"air.dedicated.closed"]))
-yPoly2 <- c(sysProp[,"air.dedicated.closed"], rev(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"]))
-yPoly3 <- c(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"], rev(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"]))
-yPoly4 <- c(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"], rev(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"] + sysProp[,"water.multi.open"]))
+yPoly1 <- c(rep(0, nBins), rev(sysProp[,"water.dedicated.closed"]))
+yPoly2 <- c(sysProp[,"water.dedicated.closed"], rev(sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"]))
+yPoly3 <- c(sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"], rev(sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"] + sysProp[,"water.multi.open"]))
+yPoly4 <- c(sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"] + sysProp[,"water.multi.open"], rev(sysProp[,"air.dedicated.closed"] + sysProp[,"water.dedicated.closed"] + sysProp[,"water.dedicated.open"] + sysProp[,"water.multi.open"]))
 
-classCols <- c("red","darkorange","forestgreen","dodgerblue")
+classCols <- c("#ff5640","#ffd900","#00ffd7","#ee92ed")
 time.plot(c(0,1), "Proportion of Genera", main="Time Series of Proportion of Respiratory Classes")
 
-polygon(xPoly,yPoly1, col=classCols[4])
-polygon(xPoly,yPoly2, col=classCols[1])
-polygon(xPoly,yPoly3, col=classCols[2])
-polygon(xPoly,yPoly4, col=classCols[3])
+polygon(xPoly,yPoly1, col=classCols[1])
+polygon(xPoly,yPoly2, col=classCols[2])
+polygon(xPoly,yPoly3, col=classCols[3])
+polygon(xPoly,yPoly4, col=classCols[4])
 
-legend(479,0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("red4", "darkorange4", "darkgreen", "blue4"), lty=1, title="Respiratory System Types", bg="#ffffff", cex=0.7)
+legend(479,0.96, legend=c("Water, Dedicated organ, Closed system", "Water, Dedicated organ, Open system", "Water, Multi-organ, Open system", "Air, Dedicated organ, Closed system"), col=c("#ff5640", "#ffd900", "#00ffd7", "#ee92ed"), lty=1, title="Respiratory System Types", bg="#ffffff", cex=0.7)
