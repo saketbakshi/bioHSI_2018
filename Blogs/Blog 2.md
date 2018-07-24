@@ -1,4 +1,4 @@
-#Blog 2: July 20, 2018
+# Blog 2: July 20, 2018
 Work on the research paper is going really well. Bella and I have finished all the code for the graphs, and the code is complete in terms of gathering and analyzing data, but I think we still need to smooth out the rough edges of the graphs like consistencies in colors or adding supportive details in the graphs. The proportion graph still needs a legend, for example. We can see a definite advantage for body size to organisms that breathe air. Also, organisms with dedicated organ respiration systems have an advantage over organisms with multi-organ respiration systems, and closed systems have advantage over open systems.
 
 R is an intergral part to our research this year as it was last year. However, my understanding of the language is much greater today than it was a year ago. I am much more comfortable with using loops and if-then statements to filter and organize data into easy-to-analyze graphs. Making subsets of data and using Noel's time.plot function make data analysis much easier than having to manually filter through the data and create graph axes.
