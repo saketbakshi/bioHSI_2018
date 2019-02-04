@@ -414,3 +414,24 @@ mtext(side=1, line=2.8, at=2, text="Water, Dedicated, Closed")
 mtext(side=1, line=0.8, at=3, text="Water, Dedicated, Open")
 mtext(side=1, line=2.8, at=4, text="Air, Multi-function, Closed")
 title(ylab=expression(paste("Biovolume (log"[10]," mm"^3,")")), line=2.2)
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
+# Boxplot Edited
+
+source("https://github.com/naheim/paleosizePaper/raw/master/sharedCode/functions.r")
+sizeData <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/bodySizes.txt')
+timescale <- read.delim(file='https://raw.githubusercontent.com/naheim/paleosizePaper/master/rawDataFiles/timescale.txt')
+nBins <- nrow(timescale)
+sizeData$log10_volume<-log10(sizeData$max_vol)
+sizeData$combined_resp<-paste(sizeData$fluid, sizeData$respOrgan, sizeData$circ)
+sizeData <- subset(sizeData, is.element(combined_resp, c("air dedicated closed","water dedicated closed","water dedicated open")))
+sizeData$combined_resp <- factor(sizeData$combined_resp)
+table(sizeData$combined_resp)
+quartz()
+boxplot(sizeData$log10_volume~sizeData$combined_resp, main="Body Size vs Respiratory Mode Boxplot", xlab="", notch=TRUE, ylab="", names=NA, col=c("#ee92ed","#ff5640", "#ffd900", "#00ffd7"))
+mtext(side=1, line=0.8, at=1, text="Air, Closed")
+mtext(side=1, line=2.8, at=2, text="Water, Closed")
+mtext(side=1, line=0.8, at=3, text="Water, Open")
+title(ylab=expression(paste("Biovolume (log"[10]," mm"^3,")")), line=2.2)
+
